@@ -1,33 +1,43 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
+using Connection = Microsoft.AspNet.SignalR.Client.Connection;
 
 namespace Contrib.SignalR.SignalRMessageBus
 {
     public class SignalRMessageBus : ScaleoutMessageBus
     {
-        private readonly SignalRSender _sender;
-        private readonly SignalRReceiver _receiver;
+    	private readonly Connection _connection;
 
-        public SignalRMessageBus(string serverUrl, IDependencyResolver dependencyResolver)
-            : this(serverUrl, null, null, dependencyResolver)
+    	public SignalRMessageBus(Uri serverUri, IDependencyResolver dependencyResolver) : base(dependencyResolver)
         {
+			_connection = new Connection(serverUri.ToString());
+    		_connection.Received += notificationRecieved;
+			_connection.Start().Wait();
         }
 
-        internal SignalRMessageBus(string serverUrl, SignalRSender signalRSender, SignalRReceiver signalRReceiver, IDependencyResolver dependencyResolver)
-            : base(dependencyResolver)
-        {
-            _sender = signalRSender ?? new SignalRSender(serverUrl);
-            _receiver = signalRReceiver ?? new SignalRReceiver(serverUrl, OnReceived);
-        }
+    	private void notificationRecieved(string obj)
+    	{
+    		var indexOfFirstHash = obj.IndexOf('#');
+    		OnReceived("0", (ulong) Convert.ToInt64(obj.Substring(0, indexOfFirstHash)),
+    		           JsonConvert.DeserializeObject<Message[]>(obj.Substring(indexOfFirstHash)));
+    	}
 
-        protected override Task Send(Message[] messages)
+    	protected override Task Send(Message[] messages)
         {
-            return _sender.Send(messages);
+			if (messages == null || messages.Length == 0)
+			{
+				var emptyTask = new TaskCompletionSource<object>();
+				emptyTask.SetResult(null);
+				return emptyTask.Task;
+			}
+			return _connection.Send("s:"+JsonConvert.SerializeObject(messages));
         }
 
         public override void Dispose()
         {
-            _receiver.Dispose();
+            _connection.Stop();
             base.Dispose();
         }
     }
