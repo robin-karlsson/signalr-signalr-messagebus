@@ -1,4 +1,4 @@
-signalr-signalr-messagebus
+SignalR backplane for scaling out SignalR
 ==========================
 
-A message bus for SignalR based on SignalR
+Deploy the web site included and use the extension method to set the proper URI to the published backplane service.
