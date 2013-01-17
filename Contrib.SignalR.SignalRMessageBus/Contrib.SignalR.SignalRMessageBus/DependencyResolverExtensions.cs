@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Messaging;
 
 namespace Contrib.SignalR.SignalRMessageBus
 {

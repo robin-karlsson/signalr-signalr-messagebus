@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Messaging;
 using Newtonsoft.Json;
 using Connection = Microsoft.AspNet.SignalR.Client.Connection;
 
@@ -35,10 +36,12 @@ namespace Contrib.SignalR.SignalRMessageBus
 			return _connection.Send("s:"+JsonConvert.SerializeObject(messages));
         }
 
-        public override void Dispose()
-        {
-            _connection.Stop();
-            base.Dispose();
-        }
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				_connection.Stop();
+			}
+		}
     }
 }
