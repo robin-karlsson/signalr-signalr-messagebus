@@ -3,7 +3,7 @@ using System.Web.Routing;
 using Contrib.SignalR.SignalRMessageBus;
 using Microsoft.AspNet.SignalR;
 
-namespace Chat1
+namespace Chat2
 {
 	public class Global : System.Web.HttpApplication
 	{

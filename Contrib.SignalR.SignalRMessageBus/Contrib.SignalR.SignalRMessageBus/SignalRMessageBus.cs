@@ -22,7 +22,7 @@ namespace Contrib.SignalR.SignalRMessageBus
     	{
     		var indexOfFirstHash = obj.IndexOf('#');
     		OnReceived("0", (ulong) Convert.ToInt64(obj.Substring(0, indexOfFirstHash)),
-    		           JsonConvert.DeserializeObject<Message[]>(obj.Substring(indexOfFirstHash)));
+    		           JsonConvert.DeserializeObject<Message[]>(obj.Substring(indexOfFirstHash+3)));
     	}
 
     	protected override Task Send(Message[] messages)

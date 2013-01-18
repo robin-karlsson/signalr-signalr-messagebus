@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{F46C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat1", "Chat1\Chat1.csproj", "{23631E73-8799-4C06-A0D3-F245FB93FD30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat2", "Chat2\Chat2.csproj", "{23633E73-8799-4C06-A0D3-F245FB93FD30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,11 +51,22 @@ Global
 		{23631E73-8799-4C06-A0D3-F245FB93FD30}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{23631E73-8799-4C06-A0D3-F245FB93FD30}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{23631E73-8799-4C06-A0D3-F245FB93FD30}.Release|x86.ActiveCfg = Release|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{23633E73-8799-4C06-A0D3-F245FB93FD30}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{23631E73-8799-4C06-A0D3-F245FB93FD30} = {F46C9DEF-AD6D-4FAD-9F51-3D0F0B6B29D5}
+		{23633E73-8799-4C06-A0D3-F245FB93FD30} = {F46C9DEF-AD6D-4FAD-9F51-3D0F0B6B29D5}
 	EndGlobalSection
 EndGlobal
