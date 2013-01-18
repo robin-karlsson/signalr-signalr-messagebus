@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Routing;
+using Contrib.SignalR.SignalRMessageBus;
+using Microsoft.AspNet.SignalR;
 
 namespace Chat1
 {
@@ -10,6 +12,8 @@ namespace Chat1
 		{
 			// Code that runs on application startup
 			RouteTable.Routes.MapHubs();
+			GlobalHost.HubPipeline.EnableAutoRejoiningGroups();
+			GlobalHost.DependencyResolver.UseSignalRServer(new Uri("http://localhost:56715/backplane"));
 		}
 
 		void Application_End(object sender, EventArgs e)

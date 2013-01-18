@@ -119,6 +119,12 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.csproj">
+      <Project>{B3BCE9D6-C0CD-4C69-8DC2-7D10CA8791C1}</Project>
+      <Name>Contrib.SignalR.SignalRMessageBus</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
