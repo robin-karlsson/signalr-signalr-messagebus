@@ -1,9 +1,11 @@
 using System.Web;
 using System.Web.Routing;
+using Chat.Backplane;
+using Contrib.SignalR.SignalRMessageBus.Backend;
 
-[assembly: PreApplicationStartMethod(typeof(Contrib.SignalR.SignalRMessageBus.Backend.RegisterConnection), "Start")]
+[assembly: PreApplicationStartMethod(typeof(RegisterConnection), "Start")]
 
-namespace Contrib.SignalR.SignalRMessageBus.Backend
+namespace Chat.Backplane
 {
     public static class RegisterConnection
     {
