@@ -61,10 +61,13 @@
     <None Include="..\Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.snk">
       <Link>Contrib.SignalR.SignalRMessageBus.snk</Link>
     </None>
+    <None Include="Contrib.SignalR.SignalRMessageBus.Backend.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.txt" />
+    <None Include="readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

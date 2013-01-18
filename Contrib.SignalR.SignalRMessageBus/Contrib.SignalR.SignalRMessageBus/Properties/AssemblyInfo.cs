@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Contrib.SignalR.SignalRMessageBus.Backend")]
-[assembly: AssemblyDescription("Backend SignalR message bus implementation for SignalR")]
+[assembly: AssemblyTitle("Contrib.SignalR.SignalRMessageBus")]
+[assembly: AssemblyDescription("SignalR message bus implementation for SignalR, use this part in your regular SignalR host.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Teleopti")]
-[assembly: AssemblyProduct("Contrib.SignalR.SignalRMessageBus.Backend")]
+[assembly: AssemblyProduct("Contrib.SignalR.SignalRMessageBus")]
 [assembly: AssemblyCopyright("Copyright © Teleopti 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e12dc114-9336-4f8e-9c4a-9017d864a582")]
+[assembly: Guid("e12dc134-9336-4f8e-9c4a-9017d864a582")]
 
 // Version information for an assembly consists of the following four values:
 //

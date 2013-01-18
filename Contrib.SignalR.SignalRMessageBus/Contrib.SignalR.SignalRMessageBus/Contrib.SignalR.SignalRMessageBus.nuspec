@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.0-rc2</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.github.com/robink-teleopti/signalr-signalr-messagebus/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://raw.github.com/robink-teleopti/signalr-signalr-messagebus/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright Teleopti 2013</copyright>
+    <tags>SignalR AspNetSignalR MessageBus</tags>
+  </metadata>
+</package>
