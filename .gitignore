@@ -21,3 +21,4 @@ PublishProfiles/
 *.ncrunchsolution
 *.log
 *.vspx
+*.nupkg
