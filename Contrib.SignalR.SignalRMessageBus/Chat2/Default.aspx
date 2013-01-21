@@ -5,38 +5,78 @@
     <script src="Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery.signalR-1.0.0-rc2.min.js" type="text/javascript"></script>
     <script src="signalr/hubs" type="text/javascript"></script>
+    <script src="Scripts/knockout-2.2.1.debug.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
-            var myHub = $.connection.chatHub;
+            var model = function (hub) {
+                var self = this;
 
-            myHub.client.append = function (message) {
-                $('#messages').append('<li>' + message + '</li>');
+                this.messages = ko.observableArray();
+                this.sendEnabled = ko.observable(false);
+                this.messageFocus = ko.observable(false);
+                this.message = ko.observable();
+                this.selectedTargetGroup = ko.observable();
+                this.selectedGroups = ko.observableArray();
+                this.availableGroups = ko.observableArray();
+                this.errorMessage = ko.observable();
+
+                this.send = function () {
+                    var val = self.message();
+                    if (val || val != "") {
+                        var promise;
+                        var selectedGroup = self.selectedTargetGroup();
+                        if (!selectedGroup) {
+                            promise = hub.server.sendMessage(val);
+                        }
+                        else {
+                            promise = hub.server.messageGroup(selectedGroup, val);
+                        }
+                    	promise.done(function() {
+                    		self.message('');
+                    		self.messageFocus(true);
+                    	});
+                    }
+                };
+
+                this.getAvailableGroups = function () {
+                    hub.server.availableGroups().done(function (groups) {
+                        ko.utils.arrayForEach(groups, function (g) {
+                            self.availableGroups.push(g);
+                        });
+                    });
+                };
+
+                hub.client.append = function (message) {
+                    self.messages.push(message);
+                };
             };
 
+            var myHub = $.connection.chatHub;
+            var vm = new model(myHub);
+
             $.connection.hub.error(function () {
-                alert("An error occured");
+                vm.errorMessage("An error occured");
+            });
+
+            vm.selectedGroups.subscribe(function () {
+                myHub.server.leaveGroups(vm.availableGroups()).done(function () {
+                    myHub.server.joinGroups(vm.selectedGroups());
+                });
             });
 
             $.connection.hub.start()
                 .done(function () {
-                    var send = $('#send');
-                    send.removeAttr('disabled');
-                    send.click(function () {
-                        var message = $('#message');
-                        var val = message.val();
-                        if (val || val != "") {
-                        	myHub.server.sendMessage(val).done(function() {
-                        	    message.val('');
-                        	});
-                        }
-                    	message[0].focus();
-                    });
+                    vm.sendEnabled(true);
 
-                    $('#message')[0].focus();
+                    vm.getAvailableGroups();
+
+                    vm.messageFocus(true);
                 })
                 .fail(function () {
-                    alert("Could not Connect!");
+                    vm.errorMessage("Could not Connect!");
                 });
+
+            ko.applyBindings(vm);
         });
     </script>
 </asp:Content>
@@ -44,11 +84,19 @@
     <h2>
         Welcome to Chat2!
     </h2>
+        <h3>Send</h3>
     <p>
-        <input id="message" type="text" placeholder="Enter your message here!"/>
-        <input id="send" type="button" value="Send!" disabled="disabled"/>
+        <input type="text" placeholder="Enter your message here!" data-bind="value: message, hasfocus: messageFocus"/>
+        <select data-bind='options: availableGroups, optionsCaption: "To all", value: selectedTargetGroup'></select>
+        <input type="button" value="Send!" data-bind="enabled: sendEnabled, click: send"/>
     </p>
-        <ul id="messages">
-        
+    <hr/>
+        <h3>Subscribe to group</h3>
+    <p data-bind="foreach: availableGroups">
+        <input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedGroups"><span data-bind="text: $data"></span><br/>
+    </p>
+    <hr/>
+        <ul data-bind="foreach: messages">
+            <li data-bind="text: $data"></li>
         </ul>
 </asp:Content>
