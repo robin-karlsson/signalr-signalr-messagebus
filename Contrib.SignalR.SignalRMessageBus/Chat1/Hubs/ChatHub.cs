@@ -18,9 +18,12 @@ namespace Chat1.Hubs
 			return new[] { "SignalR", "ASP.Net MVC" };
 		}
 
-		public void JoinGroup(string group)
+		public void JoinGroups(string[] groups)
 		{
-			Groups.Add(Context.ConnectionId, group);
+			foreach (var group in groups)
+			{
+				Groups.Add(Context.ConnectionId, group);
+			}
 		}
 
 		public void MessageGroup(string group, string message)
@@ -29,9 +32,12 @@ namespace Chat1.Hubs
 														   group + "/"));
 		}
 
-		public void LeaveGroup(string group)
+		public void LeaveGroups(string[] groups)
 		{
-			Groups.Remove(Context.ConnectionId, group);
+			foreach (var group in groups)
+			{
+				Groups.Remove(Context.ConnectionId, group);
+			}
 		}
 	}
 }
