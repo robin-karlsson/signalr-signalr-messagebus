@@ -10,12 +10,14 @@ namespace Contrib.SignalR.SignalRMessageBus
     public class SignalRMessageBus : ScaleoutMessageBus
     {
     	private readonly Connection _connection;
+    	private readonly Task startTask;
 
     	public SignalRMessageBus(Uri serverUri, IDependencyResolver dependencyResolver) : base(dependencyResolver)
         {
 			_connection = new Connection(serverUri.ToString());
     		_connection.Received += notificationRecieved;
-			_connection.Start().Wait();
+    		startTask = _connection.Start();
+			startTask.ContinueWith(t => { throw t.Exception.GetBaseException(); }, TaskContinuationOptions.OnlyOnFaulted);
         }
 
     	private void notificationRecieved(string obj)
@@ -33,6 +35,12 @@ namespace Contrib.SignalR.SignalRMessageBus
 				emptyTask.SetResult(null);
 				return emptyTask.Task;
 			}
+
+			if (!startTask.IsCompleted)
+			{
+				startTask.Wait();
+			}
+
 			return _connection.Send("s:"+JsonConvert.SerializeObject(messages));
         }
 
