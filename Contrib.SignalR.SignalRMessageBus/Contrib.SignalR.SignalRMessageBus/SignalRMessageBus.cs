@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Messaging;
@@ -27,9 +28,9 @@ namespace Contrib.SignalR.SignalRMessageBus
     		           JsonConvert.DeserializeObject<Message[]>(obj.Substring(indexOfFirstHash+3)));
     	}
 
-    	protected override Task Send(Message[] messages)
+		protected override Task Send(IList<Message> messages)
         {
-			if (messages == null || messages.Length == 0)
+			if (messages == null || messages.Count == 0)
 			{
 				var emptyTask = new TaskCompletionSource<object>();
 				emptyTask.SetResult(null);
