@@ -11,7 +11,6 @@ namespace Chat2
 		{
 			// Code that runs on application startup
 			RouteTable.Routes.MapHubs();
-			GlobalHost.HubPipeline.EnableAutoRejoiningGroups();
 			GlobalHost.DependencyResolver.UseSignalRServer(new Uri("http://localhost:56715/backplane"));
 		}
 
