@@ -3,7 +3,7 @@
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
     <script src="Scripts/jquery-2.0.0.min.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.signalR-1.1.0.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.signalR-1.1.1.min.js" type="text/javascript"></script>
     <script src="signalr/hubs" type="text/javascript"></script>
     <script src="Scripts/knockout-2.2.1.debug.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
