@@ -1,9 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contrib.SignalR.SignalRMessageBus", "Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.csproj", "{B3BCE9D6-C0CD-4C69-8DC2-7D10CA8791C1}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{F46C9DEF-AD6D-4FAD-9F51-3D0F0B6B29D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{966314E2-E202-452F-86D9-B0C6A553A31F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contrib.SignalR.SignalRMessageBus", "Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.csproj", "{B3BCE9D6-C0CD-4C69-8DC2-7D10CA8791C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat1", "Chat1\Chat1.csproj", "{23631E73-8799-4C06-A0D3-F245FB93FD30}"
 EndProject
@@ -12,13 +19,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.Backplane", "Chat.Backplane\Chat.Backplane.csproj", "{6C55632D-66D0-45D3-ABCC-23431AF20AFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contrib.SignalR.SignalRMessageBus.Backend", "Contrib.SignalR.SignalRMessageBus.Backend\Contrib.SignalR.SignalRMessageBus.Backend.csproj", "{B8B09321-2CA5-433C-AD5F-CB029BFFCB4C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{966314E2-E202-452F-86D9-B0C6A553A31F}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
