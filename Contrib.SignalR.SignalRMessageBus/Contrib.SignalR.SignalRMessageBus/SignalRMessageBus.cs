@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Messaging;
 using Connection = Microsoft.AspNet.SignalR.Client.Connection;
 
@@ -10,7 +11,7 @@ namespace Contrib.SignalR.SignalRMessageBus
     public class SignalRMessageBus : ScaleoutMessageBus
     {
     	private readonly Connection _connection;
-    	private readonly Task startTask;
+    	private Task startTask;
 
 		public SignalRMessageBus(SignalRScaleoutConfiguration scaleoutConfiguration, IDependencyResolver dependencyResolver)
 			: base(dependencyResolver, scaleoutConfiguration)
@@ -39,6 +40,15 @@ namespace Contrib.SignalR.SignalRMessageBus
 				var emptyTask = new TaskCompletionSource<object>();
 				emptyTask.SetResult(null);
 				return emptyTask.Task;
+			}
+
+			if (_connection.State == ConnectionState.Disconnected)
+			{
+				startTask = _connection.Start();
+				startTask.ContinueWith(t =>
+				{
+					throw t.Exception.GetBaseException();
+				}, TaskContinuationOptions.OnlyOnFaulted);
 			}
 
 			if (!startTask.IsCompleted)
