@@ -138,13 +138,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.csproj">
-      <Project>{B3BCE9D6-C0CD-4C69-8DC2-7D10CA8791C1}</Project>
-      <Name>Contrib.SignalR.SignalRMessageBus</Name>
-    </ProjectReference>
+    <None Include="Scripts\jquery-2.0.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\jquery-2.0.0.min.map" />
+    <ProjectReference Include="..\Contrib.SignalR.SignalRMessageBus\Contrib.SignalR.SignalRMessageBus.csproj">
+      <Project>{b3bce9d6-c0cd-4c69-8dc2-7d10ca8791c1}</Project>
+      <Name>Contrib.SignalR.SignalRMessageBus</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

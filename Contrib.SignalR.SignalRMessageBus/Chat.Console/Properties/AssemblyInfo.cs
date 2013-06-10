@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Contrib.SignalR.SignalRMessageBus")]
-[assembly: AssemblyDescription("SignalR message bus implementation for SignalR, use this part in your regular SignalR host.")]
+[assembly: AssemblyTitle("Chat.Console")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Teleopti")]
-[assembly: AssemblyProduct("Contrib.SignalR.SignalRMessageBus")]
-[assembly: AssemblyCopyright("Copyright © Teleopti 2013")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Chat.Console")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +20,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e12dc134-9336-4f8e-9c4a-9017d864a582")]
+[assembly: Guid("c7cdd06d-2de9-434a-aeed-04038074fb86")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,6 +32,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.3.0")]
-[assembly: AssemblyInformationalVersion("1.1.3")]
-[assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
