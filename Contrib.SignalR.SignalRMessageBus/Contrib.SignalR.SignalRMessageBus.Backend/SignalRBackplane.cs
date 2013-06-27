@@ -11,7 +11,7 @@ namespace Contrib.SignalR.SignalRMessageBus.Backend
 	public class SignalRBackplane : PersistentConnection
 	{
 		private static readonly object lockobj = new object();
-		private static readonly IDictionary<long,string> messageDictionary = new ConcurrentDictionary<long, string>();
+		private static readonly IDictionary<ulong,string> messageDictionary = new ConcurrentDictionary<ulong, string>();
 		private static Timer timer;
 
 		public override void Initialize(IDependencyResolver resolver, HostContext context)
@@ -33,7 +33,7 @@ namespace Contrib.SignalR.SignalRMessageBus.Backend
 
 			lock (lockobj)
 			{
-				var lastIdToSave = getLastId() - 100000;
+				var lastIdToSave = IdStorage.LastId - 100000;
 				var keysToRemove = messageDictionary.Keys.Where(k => k < lastIdToSave).ToArray();
 
 				foreach (var key in keysToRemove)
@@ -45,19 +45,14 @@ namespace Contrib.SignalR.SignalRMessageBus.Backend
 
 		protected override System.Threading.Tasks.Task OnReceived(IRequest request, string connectionId, string data)
 		{
-			long id;
+			ulong id;
 			lock (lockobj)
 			{
-				id = getLastId() + 1;
-				messageDictionary.Add(id,data);
+				id = IdStorage.LastId++;
+				messageDictionary.Add(id, data);
 			}
-			return Connection.Broadcast(id + "#"+data);
-		}
 
-		private static long getLastId()
-		{
-			if (messageDictionary.Count == 0) return 0L;
-			return messageDictionary.Keys.Max();
+			return Connection.Broadcast(id + "#"+data);
 		}
 	}
 }
